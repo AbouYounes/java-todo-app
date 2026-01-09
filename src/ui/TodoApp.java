@@ -1,10 +1,15 @@
+package ui;
+
+import model.Task;
+import service.TodoService;
+
 import java.util.Scanner;
 
 /**
  * Entry point of the TODO application.
  *
  * This class handles user interaction through the console
- * and delegates task operations to TodoService.
+ * and delegates task operations to service.TodoService.
  */
 
 public class TodoApp {
@@ -35,7 +40,7 @@ public class TodoApp {
                     System.out.print("Enter task description: ");
                     String description = scanner.nextLine();
                     service.addTask(description);
-                    System.out.println("Task added.");
+                    System.out.println("model.Task added.");
 
 
                     System.out.println("\n--- List tasks ---");
@@ -71,9 +76,9 @@ public class TodoApp {
 
                     boolean completed = service.completeTask(id);
                     if (completed) {
-                        System.out.println("Task marked as completed.");
+                        System.out.println("model.Task marked as completed.");
                     } else {
-                        System.out.println("Task not found.");
+                        System.out.println("model.Task not found.");
                     }
                     System.out.println("\n--- List tasks ---");
                     for (Task task : service.getTasks()) {
@@ -97,13 +102,13 @@ public class TodoApp {
 
                     boolean deleted = service.deleteTask(deleteId);
                     if (deleted) {
-                        System.out.println("Task deleted.");
+                        System.out.println("model.Task deleted.");
                         System.out.println("\n--- List tasks ---");
                         for (Task task : service.getTasks()) {
                             System.out.println(task);
                         }
                     } else {
-                        System.out.println("Task not found.");
+                        System.out.println("model.Task not found.");
                         System.out.println("\n--- List tasks ---");
                         for (Task task : service.getTasks()) {
                             System.out.println(task);

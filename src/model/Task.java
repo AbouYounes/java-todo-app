@@ -1,8 +1,9 @@
+package model;
 
 /**
  * Represents a single TODO task.
  *
- * A Task has:
+ * A model.Task has:
  * - an id (unique identifier)
  * - a description
  * - a completion status
@@ -14,7 +15,7 @@ public class Task {
     private boolean completed;
 
     /**
-     * Creates a new Task.
+     * Creates a new model.Task.
      *
      * @param id unique task identifier
      * @param description task description
