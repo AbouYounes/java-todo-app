@@ -35,4 +35,21 @@ public class TodoService {
         return tasks;
     }
 
+    /**
+     * Marks a task as completed using its ID.
+     *
+     * @param id the unique identifier of the task
+     * @return true if task was found and completed, false otherwise
+     */
+    public boolean completeTask(int id) {
+        for (Task task : tasks) {
+            if (task.getId() == id) {
+                task.markCompleted();
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }
