@@ -51,5 +51,15 @@ public class TodoService {
         return false;
     }
 
+    /**
+     * Deletes a task by its ID.
+     *
+     * @param id the unique identifier of the task
+     * @return true if task was found and deleted, false otherwise
+     */
+    public boolean deleteTask(int id) {
+        return tasks.removeIf(task -> task.getId() == id);
+    }
+
 
 }

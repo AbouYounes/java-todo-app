@@ -20,8 +20,10 @@ public class TodoApp {
             System.out.println("1. Add task");
             System.out.println("2. View tasks");
             System.out.println("3. Complete task");
-            System.out.println("4. Exit");
+            System.out.println("4. Delete task");
+            System.out.println("5. Exit");
             System.out.print("Choose an option: ");
+
 
             int choice = scanner.nextInt();
             scanner.nextLine(); // consume newline
@@ -78,9 +80,40 @@ public class TodoApp {
                     break;
 
                 case 4:
+                    if (service.getTasks().isEmpty()) {
+                        System.out.println("No tasks to delete.");
+                        System.out.println("\n--- List tasks ---");
+                        for (Task task : service.getTasks()) {
+                            System.out.println(task);
+                        }
+                        break;
+                    }
+
+                    System.out.print("Enter task ID to delete: ");
+                    int deleteId = scanner.nextInt();
+                    scanner.nextLine();
+
+                    boolean deleted = service.deleteTask(deleteId);
+                    if (deleted) {
+                        System.out.println("Task deleted.");
+                        System.out.println("\n--- List tasks ---");
+                        for (Task task : service.getTasks()) {
+                            System.out.println(task);
+                        }
+                    } else {
+                        System.out.println("Task not found.");
+                        System.out.println("\n--- List tasks ---");
+                        for (Task task : service.getTasks()) {
+                            System.out.println(task);
+                        }
+                    }
+                    break;
+
+                case 5:
                     running = false;
                     System.out.println("Exiting TODO App...");
                     break;
+
 
 
                 default:
