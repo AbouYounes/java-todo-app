@@ -61,4 +61,13 @@ public class Task {
                 (completed ? " [DONE]" : " [TODO]");
     }
 
+    /**
+     * Converts the task to a file-friendly string format.
+     *
+     * @return task data formatted for file storage
+     */
+    public String toFileString() {
+        return id + "|" + description + "|" + completed;
+    }
+
 }

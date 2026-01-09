@@ -11,6 +11,7 @@ public class TodoApp {
     public static void main(String[] args) {
         // Create the service responsible for task management
         TodoService service = new TodoService();
+        service.loadTasks();
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
@@ -21,7 +22,8 @@ public class TodoApp {
             System.out.println("2. View tasks");
             System.out.println("3. Complete task");
             System.out.println("4. Delete task");
-            System.out.println("5. Exit");
+            System.out.println("5. Save Tasks");
+            System.out.println("6. Exit");
             System.out.print("Choose an option: ");
 
 
@@ -110,6 +112,12 @@ public class TodoApp {
                     break;
 
                 case 5:
+                    service.saveTasks();
+                    running = false;
+                    System.out.println("Tasks saved. Goodbye!");
+                    break;
+
+                case 6:
                     running = false;
                     System.out.println("Exiting TODO App...");
                     break;

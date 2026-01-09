@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,9 @@ public class TodoService {
 
     /** Counter used to generate unique task IDs */
     private int nextId = 1;
+
+    /** File where tasks are stored */
+    private static final String FILE_NAME = "tasks.txt";
 
     /**
      * Adds a new task with the given description.
@@ -60,6 +64,54 @@ public class TodoService {
     public boolean deleteTask(int id) {
         return tasks.removeIf(task -> task.getId() == id);
     }
+
+    /**
+     * Loads tasks from the file into memory.
+     */
+    public void loadTasks() {
+        File file = new File(FILE_NAME);
+
+        if (!file.exists()) {
+            return; // No file yet → nothing to load
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split("\\|");
+
+                int id = Integer.parseInt(parts[0]);
+                String description = parts[1];
+                boolean completed = Boolean.parseBoolean(parts[2]);
+
+                Task task = new Task(id, description);
+                if (completed) {
+                    task.markCompleted();
+                }
+
+                tasks.add(task);
+                nextId = Math.max(nextId, id + 1);
+            }
+        } catch (IOException e) {
+            System.out.println("Error loading tasks: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Saves all tasks to the file.
+     */
+    public void saveTasks() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
+            for (Task task : tasks) {
+                writer.write(task.toFileString());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving tasks: " + e.getMessage());
+        }
+    }
+
 
 
 }
