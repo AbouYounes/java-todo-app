@@ -1,0 +1,58 @@
+/* Root container */
+.root {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-background-color: #f5f7fa;
+}
+
+/* Text field */
+.text-field {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #d0d7de;
+    -fx-padding: 8;
+    -fx-font-size: 13px;
+}
+
+/* Buttons (base) */
+.button {
+    -fx-background-radius: 8;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 14;
+    -fx-cursor: hand;
+}
+
+/* Add button */
+#add {
+    -fx-background-color: #2da44e;
+    -fx-text-fill: white;
+}
+
+#complete {
+    -fx-background-color: #0969da;
+    -fx-text-fill: white;
+}
+
+#delete {
+    -fx-background-color: #cf222e;
+    -fx-text-fill: white;
+}
+
+
+/* Disabled buttons */
+.button:disabled {
+    -fx-opacity: 0.5;
+}
+
+/* ListView */
+.list-view {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #d0d7de;
+}
+
+/* List cells */
+.list-cell {
+    -fx-padding: 10;
+    -fx-font-size: 13px;
+}

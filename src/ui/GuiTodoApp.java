@@ -24,8 +24,14 @@ public class GuiTodoApp extends Application {
         taskInput.setPromptText("Enter a new task");
 
         Button addButton = new Button("Add Task");
+        addButton.setId("add");
+
         Button completeButton = new Button("Complete Selected");
+        completeButton.setId("complete");
+
         Button deleteButton = new Button("Delete Selected");
+        deleteButton.setId("delete");
+
 
         ListView<Task> taskListView = new ListView<>();
         taskListView.getItems().addAll(service.getTasks());
@@ -75,6 +81,10 @@ public class GuiTodoApp extends Application {
         root.setPadding(new javafx.geometry.Insets(10));
 
         Scene scene = new Scene(root, 400, 550);
+        scene.getStylesheets().add(
+                getClass().getResource("style.css").toExternalForm()
+        );
+
         stage.setTitle("TODO App");
         stage.setScene(scene);
         stage.show();
