@@ -61,4 +61,17 @@ public class TodoController {
     public void refreshList() {
         taskListView.getItems().setAll(service.getTasks());
     }
+
+    public void handleAdd() {
+        addTask();
+    }
+
+    public void handleComplete() {
+        completeTask();
+    }
+
+    public void handleDelete() {
+        deleteTask();
+    }
+
 }

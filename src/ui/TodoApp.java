@@ -7,6 +7,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Task;
 import service.TodoService;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+
 
 /**
  * JavaFX View & application entry point.
@@ -50,6 +54,9 @@ public class TodoApp extends Application {
                 deleteButton
         );
 
+
+
+
         VBox root = new VBox(
                 10,
                 taskInput,
@@ -65,9 +72,26 @@ public class TodoApp extends Application {
                 getClass().getResource("style.css").toExternalForm()
         );
 
+        // Keyboard shortcuts
+        scene.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                controller.handleAdd();
+            } else if (event.getCode() == KeyCode.DELETE) {
+                controller.handleDelete();
+            }
+        });
+
+        scene.getAccelerators().put(
+                new KeyCodeCombination(KeyCode.D, KeyCombination.CONTROL_DOWN),
+                controller::handleComplete
+        );
+
+
         stage.setTitle("TODO App");
         stage.setScene(scene);
         stage.show();
+        taskInput.requestFocus();
+
 
         stage.setOnCloseRequest(e -> service.saveTasks());
     }
