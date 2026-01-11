@@ -4,6 +4,13 @@ out/
 !**/src/test/**/out/
 .kotlin
 
+# Build output
+/build/
+
+# Packaged JAR
+/todo-app.jar
+
+
 ### Eclipse ###
 .apt_generated
 .classpath
