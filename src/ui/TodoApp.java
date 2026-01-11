@@ -93,7 +93,18 @@ public class TodoApp extends Application {
         taskInput.requestFocus();
 
 
-        stage.setOnCloseRequest(e -> service.saveTasks());
+        stage.setOnCloseRequest(e -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Exit Application");
+            alert.setHeaderText("Exit TODO App?");
+            alert.setContentText("Do you really want to exit?");
+
+            if (alert.showAndWait().orElse(ButtonType.CANCEL) != ButtonType.OK) {
+                e.consume(); // cancel close
+            } else {
+                service.saveTasks();
+            }
+        });
     }
 
     public static void main(String[] args) {

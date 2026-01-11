@@ -5,6 +5,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import model.Task;
 import service.TodoService;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+
 
 /**
  * Controller for the JavaFX TODO application.
@@ -52,11 +55,23 @@ public class TodoController {
 
     private void deleteTask() {
         Task selected = taskListView.getSelectionModel().getSelectedItem();
-        if (selected != null) {
+        if (selected == null) {
+            return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Task");
+        alert.setHeaderText("Delete selected task?");
+        alert.setContentText("Are you sure you want to delete:\n\n" + selected);
+
+        ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
+
+        if (result == ButtonType.OK) {
             service.deleteTask(selected.getId());
             refreshList();
         }
     }
+
 
     public void refreshList() {
         taskListView.getItems().setAll(service.getTasks());
