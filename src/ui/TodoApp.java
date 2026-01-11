@@ -69,7 +69,7 @@ public class TodoApp extends Application {
 
         Scene scene = new Scene(root, 400, 550);
         scene.getStylesheets().add(
-                getClass().getResource("style.css").toExternalForm()
+                getClass().getResource("/ui/style.css").toExternalForm()
         );
 
         // Keyboard shortcuts
